@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Class {@code Order} prints out all the orders in the shop in the form of table
+ * Class {@code OrderPrinter} prints out all the orders in the shop in the form of table
  * @author  Andrii Popov
  */
 
@@ -26,10 +26,11 @@ public class OrderPrinter {
          */
         public void tablePrint() {
                 printTitle();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 for (int i = 0; i <= orders.size()-1; i++) {
                         Order nextOrder = orders.get(i);
                         System.out.print(nextOrder.getId()+"            ");
-                        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                         System.out.print(dateFormat.format(nextOrder.getDate().getTime())+"             ");
                         System.out.print(nextOrder.isFulfilled()+"            ");
                         System.out.print(nextOrder.getCashier().getName()+"            ");
@@ -48,6 +49,11 @@ public class OrderPrinter {
                 System.out.println("items               ");
         }
 
+        /**
+         * Creates a string of items in an order
+         * @param items
+         * @return
+         */
         private StringBuilder getOrderItemList(List<OrderItem> items) {
                 StringBuilder itemString = new StringBuilder(items.size() * 16);
                 for (OrderItem i : items) {

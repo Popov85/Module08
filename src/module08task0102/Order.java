@@ -9,7 +9,7 @@ import java.util.List;
  * @author  Andrii Popov
  */
 
-public class Order {
+public class Order implements Comparable<Order> {
 
         // ID counter
         private static int currentID = 0;
@@ -124,5 +124,8 @@ public class Order {
          */
         private int getInstrumentNumberInStock(Instrument instrument) {
                 return StoreHouse.calculateInstruments(instrument);
+        }
+        public int compareTo(Order compareOrder) {
+                return compareOrder.getId() - this.id;
         }
 }

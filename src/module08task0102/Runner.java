@@ -1,9 +1,6 @@
 package module08task0102;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Class {@code Runner} Module 08 tasks 01-02
@@ -36,16 +33,22 @@ public class Runner {
                  */
 
                 /*Print out all the orders in the form of table*/
+                Collections.sort(orderList);
+
+                /*for(Order temp: orderList){
+                        System.out.println(temp.getId());
+                }*/
+
                 OrderPrinter printClass = new OrderPrinter(orderList);
                 printClass.tablePrint();
                 /*
                 Task 02. Sort objects without Collections.sort()
                  */
                 /*Sort the orders by date in descending order*/
-                printClass.sortObject();
+                //printClass.sortObject();
                 /*Print out all the orders from the most recent to the last recent*/
-                System.out.println("The most recent orders are the following:");
-                printClass.tablePrint();
+                //System.out.println("The most recent orders are the following:");
+                //printClass.tablePrint();
         }
 
         /**
