@@ -125,7 +125,10 @@ public class Order implements Comparable<Order> {
         private int getInstrumentNumberInStock(Instrument instrument) {
                 return StoreHouse.calculateInstruments(instrument);
         }
+
+        @Override
         public int compareTo(Order compareOrder) {
-                return compareOrder.getId() - this.id;
+                // Sorts dates from the earliest to the latest
+                return compareOrder.getDate().compareTo(this.getDate());
         }
 }

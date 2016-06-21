@@ -3,52 +3,43 @@ package module08task0102;
 import java.util.*;
 
 /**
- * Class {@code Runner} Module 08 tasks 01-02
- * Task 01. Print out entities of a collection in the form of table
- * Task 02. Sort objects without Collections.sort(). Algorithm is the following^
- * It is based on converting the dates into long primitive and applies usual Bubble sorting algorithm to the collection
+ * Class {@code Runner} Module 08 tasks 02
+ * Modified version of . Prints out entities of a collection in the form of table sorted with Collections.sort()
+ * @author  Andrii Popov
  */
 public class Runner {
         public static void main (String[] args) throws MoreThanIsLeftException {
-
                 // Create instances of musical instruments
                 Instrument aPiano = new Piano();
                 Instrument aTrumpet = new Trumpet();
                 Instrument aGuitar = new Guitar();
 
                 // Fill StoreHouse with some musical instruments
-                HashMap<Instrument, Integer> mapInstance = new HashMap<Instrument, Integer>();
+                setInitialQuantity(aPiano, aTrumpet, aGuitar);
+
+                // Print the current state of StoreHouse
+                StoreHouse.printStockState();
+                /*Let's make a dozen of orders to be printed out and add them to an ArrayList*/
+                List<Order> orderList = createOrders(12, aPiano, aTrumpet, aGuitar);
+
+                //Task 01. Print out entities of a collection in the form of table sorted via Collections.sort()
+                Collections.sort(orderList);
+                OrderPrinter printClass = new OrderPrinter(orderList);
+                printClass.tablePrint();
+        }
+
+        /**
+         * Sets initial quantity of each instrument
+         * @param aPiano
+         * @param aTrumpet
+         * @param aGuitar
+         */
+        private static void setInitialQuantity(Instrument aPiano, Instrument aTrumpet, Instrument aGuitar) {
+                HashMap<Instrument, Integer> mapInstance = new HashMap<>();
                 mapInstance.put(aPiano, 200);
                 mapInstance.put(aTrumpet, 700);
                 mapInstance.put(aGuitar, 1600);
                 StoreHouse.setStock(mapInstance);
-                // Print the current state of StoreHouse
-                StoreHouse.printStockState();
-
-                /*Let's make a dozen of orders to be printed out and add them to an ArrayList*/
-                List<Order> orderList = createOrders(12, aPiano, aTrumpet, aGuitar);
-
-                /*
-                Task 01. Print out entities of a collection in the form of table
-                 */
-
-                /*Print out all the orders in the form of table*/
-                Collections.sort(orderList);
-
-                /*for(Order temp: orderList){
-                        System.out.println(temp.getId());
-                }*/
-
-                OrderPrinter printClass = new OrderPrinter(orderList);
-                printClass.tablePrint();
-                /*
-                Task 02. Sort objects without Collections.sort()
-                 */
-                /*Sort the orders by date in descending order*/
-                //printClass.sortObject();
-                /*Print out all the orders from the most recent to the last recent*/
-                //System.out.println("The most recent orders are the following:");
-                //printClass.tablePrint();
         }
 
         /**
